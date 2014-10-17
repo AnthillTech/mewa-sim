@@ -1,0 +1,44 @@
+name:           mewa-sim
+version:        0.1
+cabal-version:  >=1.10
+build-type:     Simple
+author:         Krzysztof Langner
+maintainer:     klangner@gmail.com
+synopsis:       Simulator for object monitored by mewa server
+homepage:       https://github.com/klangner/mewa-sim
+Bug-reports:    https://github.com/klangner/mewa-sim/issues
+stability:      Unstable interface, incomplete features.
+category:       Application, source code analysis
+License:        BSD3
+License-file:   LICENSE
+Extra-Source-Files:
+                CHANGES
+description:    
+    This simulator creates virtual devices which connects to mewa server and simulate some activity.
+
+source-repository head
+  type:     git
+  location: https://github.com/klangner/mewa-sim
+
+executable mewa-sim
+  hs-source-dirs:   src
+  main-is:          Main.hs
+  default-language: Haskell2010
+  build-depends:    
+                    base >= 4 && <4.7
+  ghc-options:      -Wall -threaded
+  other-modules:    Mewa.Protocol
+
+test-suite spec
+  type:             exitcode-stdio-1.0
+  main-is:          Spec.hs
+  default-language: Haskell2010
+  build-depends:   
+                    base >= 4 && <4.7,
+                    Cabal >=1.16 && <1.19,
+                    hspec >=1.8 && <1.9,
+                    QuickCheck >=2.6 && <2.7
+  other-modules:   Mewa.Protocol
+  hs-source-dirs:  
+                    src,
+                    test-src
